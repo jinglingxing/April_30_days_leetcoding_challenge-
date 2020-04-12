@@ -32,8 +32,7 @@ class Solution:
         return nums
 
 
-if __name__=='__main__':
-    print("in main")            
+if __name__=='__main__':           
     sol = Solution()
     inp = [0,0,1,2,0,12]
     nums = inp.copy()

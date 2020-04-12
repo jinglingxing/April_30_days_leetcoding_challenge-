@@ -3,8 +3,24 @@
 """
 Created on Tue Apr  7 15:08:43 2020
 
-@author: jinlingxing
+@author: Jinling Xing & Luc Michea
 """
+
+'''
+Problem :
+    Given an array of strings, group anagrams together.
+
+Example :
+    Input: ["eat", "tea", "tan", "ate", "nat", "bat"],
+    Output:
+    [
+    ["ate","eat","tea"],
+    ["nat","tan"],
+    ["bat"]
+    ]
+'''
+
+from typing import List
 
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
@@ -20,3 +36,9 @@ class Solution:
             else:
                 res[line[0]] = [line[1]]
         return res.values()
+
+if __name__=='__main__':
+    inp = ["eat", "tea", "tan", "ate", "nat", "bat"]
+    sol = Solution()
+    out = sol.groupAnagrams(inp)
+    print("The solution to {} is : {}".format(inp, out))

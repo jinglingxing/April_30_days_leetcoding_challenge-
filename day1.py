@@ -11,7 +11,7 @@ Problem :
 Given a non-empty array of integers, every element appears twice except for one. 
 Find that single one.
 
-Example 1:
+Example 1:S
     Input: [2,2,1]
     Output: 1
 
@@ -34,7 +34,6 @@ class Solution:
     
     
 if __name__=='__main__':
-    print("in main")
     sol = Solution()
     inp = [2,2,1]
     out = sol.singleNumber(inp)

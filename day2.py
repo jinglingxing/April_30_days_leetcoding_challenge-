@@ -43,8 +43,7 @@ class Solution:
             n1 = str(res)
         return True
     
-if __name__=='__main__':
-    print("in main")            
+if __name__=='__main__':         
     sol = Solution()
     inp = 19
     out = sol.isHappy(inp)
