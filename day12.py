@@ -47,6 +47,24 @@ class Solution:
             return stones.pop()        
         return 0
         
+#solution 2
+    def lastStoneWeight2(self, stones: List[int]) -> int:
+        while(len(stones) >= 1):
+            x = sorted(stones)
+            if len(x) < 2:
+                return x[0]
+            elif len(x) == 2:
+                return x[1]-x[0]
+            else:
+                smash = x[-1]-x[-2]
+                largest = x[-1]
+                x.remove(largest)
+                stones.remove(largest)
+                sec_largest = x[-1]
+                x.remove(sec_largest)
+                stones.remove(sec_largest)
+                x.append(smash)
+                stones.append(smash)
 
 if __name__=='__main__':
     sol = Solution()
