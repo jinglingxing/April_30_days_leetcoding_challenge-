@@ -37,7 +37,7 @@ class TreeNode:
         self.right = None
 
 # Our definition of a Tree
-class Tree:
+class Tree (object) :
     def __init__(self, inp_l: List[int] = []):
         if inp_l:
             inp = inp_l.copy()
@@ -61,11 +61,20 @@ class Tree:
         if inp_l:
             self.add_level(lvl, inp_l)
 
-    def str_lvl (self, prev_lvl: List[TreeNode]) -> str:
+    def str_lvl (self, prev_lvl: List[TreeNode], prev_node_pos: List[int] = [0]) -> str:
         line1 = ''
         line2 = ''
         lvl = []
-        for prevN in prev_lvl:
+        for i in range (len(prev_lvl)):
+            prevN = prev_lvl[i]
+            posN = prev_node_pos[i]
+            
+            # We check if we have the right spacing based on the position
+            # of the previous node
+            if len(line1) != 7*posN :
+                line1 += ' '*7*(posN - (len(line1)%7))
+                line2 += ' '*7*(posN - (len(line2)%7))
+
             if prevN.left.val:
                 line1 += ' / '
                 line2 += '{} '.format(prevN.left.val)
@@ -80,11 +89,10 @@ class Tree:
                 line2 += '   '
         return (line1 + '\n' + line2)
 
+    def __str__ (self) -> str:
+        l_str_lvl = self.str_lvl([self.top])
 
-    def __str__(self) -> str:
-        top = self.top
-        s = str(top)
-        return s
+        return str(self.top.val)
 
 
 class Solution:
@@ -108,13 +116,11 @@ class Solution:
             left = self.height(root.left)    
             right = self.height(root.right)
             return max(left,right)+1
-
-
         
         
 if __name__ == "__main__":
     inp = [1,2,3,4,5]
-    T = Tree(inp)
+    T = Tree(inp_l = inp)
     tnode = TreeNode(1)
     tnode.left = TreeNode(2)
     tnode.right = TreeNode(3)
@@ -123,5 +129,5 @@ if __name__ == "__main__":
     sol = Solution()
     out = sol.diameterOfBinaryTree(T.top)
     print("The solution to {} is : {}".format(inp, out))
-
+    print('{}'.format(T))
     print(T.str_lvl([T.top]))
