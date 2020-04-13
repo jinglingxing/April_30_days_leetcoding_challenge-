@@ -50,13 +50,19 @@ class Tree (object) :
         for prevN in prev_lvl:
             if inp_l :
                 if len(inp_l) == 1:
-                    prevN.left = TreeNode(inp_l.pop(0))
-                    lvl.append(prevN.left)
+                    value = inp_l.pop(0)
+                    if value:
+                        prevN.left = TreeNode(value)
+                        lvl.append(prevN.left)
                 elif len(inp_l) > 1:
-                    prevN.left = TreeNode(inp_l.pop(0))
-                    lvl.append(prevN.left)
-                    prevN.right = TreeNode(inp_l.pop(0))
-                    lvl.append(prevN.right)
+                    value = inp_l.pop(0)
+                    if value:
+                        prevN.left = TreeNode(value)
+                        lvl.append(prevN.left)
+                    value = inp_l.pop(0)
+                    if value:
+                        prevN.right = TreeNode(value)
+                        lvl.append(prevN.right)
         
         if inp_l:
             self.add_level(lvl, inp_l)
@@ -65,6 +71,7 @@ class Tree (object) :
         line1 = ''
         line2 = ''
         lvl = []
+        pos = []
         for i in range (len(prev_lvl)):
             prevN = prev_lvl[i]
             posN = prev_node_pos[i]
@@ -75,24 +82,40 @@ class Tree (object) :
                 line1 += ' '*7*(posN - (len(line1)%7))
                 line2 += ' '*7*(posN - (len(line2)%7))
 
-            if prevN.left.val:
+            if prevN.left:
                 line1 += ' / '
                 line2 += '{} '.format(prevN.left.val)
+                lvl.append(prevN.left)
+                pos.append(posN*2)
             else:
                 line1 += '   '
                 line2 += '   '
-            if prevN.right.val:
-                line1 += ' \ '
+            if prevN.right:
+                line1 += ' \\ '
                 line2 += '   {}'.format(prevN.right.val)
+                lvl.append(prevN.right)
+                pos.append(posN*2 + 1)
             else:
                 line1 += '   '
                 line2 += '   '
-        return (line1 + '\n' + line2)
+        if lvl :
+            return [line1 + '\n' + line2] + self.str_lvl(lvl, pos)
+        return [line1 + '\n' + line2]
 
     def __str__ (self) -> str:
-        l_str_lvl = self.str_lvl([self.top])
-
-        return str(self.top.val)
+        l_str_lvl = [str(self.top.val)]
+        l_str_lvl += self.str_lvl([self.top])
+        l_str_lvl.pop() #remove last element
+        length_l = len(l_str_lvl)
+        l_str_lvl[0] = ' '*int(7*(length_l-1)*0.5)+l_str_lvl[0]
+        for i in range (1, length_l):
+            #l_str_lvl[i] = ' '*7*int((length_l-i)/2) + l_str_lvl[i]
+            line1 = l_str_lvl[i].split('\n')[0]
+            line2 = l_str_lvl[i].split('\n')[1]
+            line1 = ' '*int(7*(length_l-1-i)*0.5) + line1
+            line2 = ' '*int(7*(length_l-1-i)*0.5) + line2
+            l_str_lvl[i] = line1 + '\n' + line2
+        return '\n'.join(l_str_lvl)
 
 
 class Solution:
@@ -119,7 +142,7 @@ class Solution:
         
         
 if __name__ == "__main__":
-    inp = [1,2,3,4,5]
+    inp = [1,2,3,4,5, None,6]
     T = Tree(inp_l = inp)
     tnode = TreeNode(1)
     tnode.left = TreeNode(2)
@@ -130,4 +153,4 @@ if __name__ == "__main__":
     out = sol.diameterOfBinaryTree(T.top)
     print("The solution to {} is : {}".format(inp, out))
     print('{}'.format(T))
-    print(T.str_lvl([T.top]))
+    #print(T.str_lvl([T.top]))
