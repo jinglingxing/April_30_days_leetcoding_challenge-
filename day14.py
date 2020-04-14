@@ -3,7 +3,7 @@
 """
 Created on Tue Apr 14 09:23:18 2020
 
-@author: jinlingxing
+@author: jinlingxing & luc Michea 
 """
 from typing import List
 class Solution:
@@ -19,10 +19,7 @@ class Solution:
         total_left = left-right
         if abs(total_left) > len(s):
             total_left = total_left%len(s)
-        if total_left <= 0:
-            s = s[total_left:] + s[:total_left]
-        else:
-            s = s[total_left:] + s[:total_left]
+        s = s[total_left:] + s[:total_left]
         return s
     
 sol = Solution()
