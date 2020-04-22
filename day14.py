@@ -59,10 +59,11 @@ class Solution:
         total_left = left-right
         if abs(total_left) > len(s):
             total_left = total_left%len(s)
-<<<<<<< HEAD
+#cat code:
+#<<<<<<< HEAD
             
-=======
->>>>>>> 4deb2f261f7a3ec0bb5cb95596baf08b45555054
+#=======
+#>>>>>>> 4deb2f261f7a3ec0bb5cb95596baf08b45555054
         s = s[total_left:] + s[:total_left]
         return s
     
