@@ -47,6 +47,6 @@ class Solution:
             dic[pre_sum[i]] = dic.get(pre_sum[i], 0) + 1
         return count
 sol = Solution()
-nums = [1,1,1]
-k = 2
+nums = [1,2,0,1,2,1]
+k = 4
 sol.subarraySum(nums,k)
