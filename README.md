@@ -27,10 +27,17 @@
   Search in Rotated Sorted Array <br />
   Construct Binary Search Tree from Preorder Traversal <br />
   Leftmost Column with at Least a One <br />
-### day 22 to day 26
+### day 22 to day 28
   Subarray Sum Equals K <br />
   Bitwise AND of Numbers Range <br />
   LRU Cache  <br />
   Jump Game  <br />
   Longest Common Subsequence <br />
+  Maximal Square <br /> 
+  First Unique Number <br />
+  Maximal Square <br /> 
+  First Unique Number<br />
+### day 29 and day 30
+  Binary Tree Maximum Path Sum <br />
+  Check If a String Is a Valid Sequence from Root to Leaves Path in a Binary Tree <br />
 
