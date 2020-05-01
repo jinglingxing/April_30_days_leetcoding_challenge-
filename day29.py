@@ -50,7 +50,9 @@ class Solution:
         else:
             left = self.helper(root.left)
             right = self.helper(root.right)
+            print("root.val{},root.val+left+right{},left{},right{}".format(root.val, root.val+left+right, left, right))
             self.max_sum = max(self.max_sum, root.val, root.val+left+right, left+root.val, right+root.val)
+            print("max_sum{}".format(self.max_sum))
             return max(root.val, root.val+left, root.val+right)# reture current branch max value for further recursive
         
     def maxPathSum(self, root: TreeNode) -> int:
@@ -63,13 +65,13 @@ sol = Solution()
 # root.right.left = TreeNode(15)
 # root.right.right = TreeNode(7)
 
-root = TreeNode(1)
-root.left = TreeNode(-2)
-root.left.left = TreeNode(1)
-root.left.right = TreeNode(3)
-root.left.left.left = TreeNode(-1)
-root.right = TreeNode(-3)
-root.right.left = TreeNode(-2)
+root = TreeNode(-3)
+# root.left = TreeNode(-2)
+# root.left.left = TreeNode(1)
+# root.left.right = TreeNode(3)
+# root.left.left.left = TreeNode(-1)
+# root.right = TreeNode(-3)
+# root.right.left = TreeNode(-2)
 sol.maxPathSum(root)
 
 
